@@ -17,6 +17,7 @@
 class COptions : public COptionsBase {
 public:
     bool prettyPrint;
+    string networkString;
     bool rerun;
     bool incomeOnly;
     bool expenseOnly;

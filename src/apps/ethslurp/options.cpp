@@ -20,6 +20,7 @@ static COption params[] = {
     COption("-fmt:<str>",       "pretty print, optionally add ':txt,' ':csv,' or ':html'"),
     COption("-income",          "include income transactions only"),
     COption("-expense",         "include expenditures only"),
+    COption("-testnet",         "slurp ropsten instead of mainnet"),
     COption("@rerun",           "re-run the most recent slurp"),
     COption("@open",            "open the configuration file for editing"),
     COption("@max:<val>",       "maximum transactions to slurp (:250000)"),
@@ -62,6 +63,9 @@ bool COptions::parseArguments(string_q& command) {
             // -f by itself is json prettyPrint
             prettyPrint = true;
             exportFormat = "json";
+
+        } else if (arg == "-t" || arg == "--testnet") {
+            networkString = "api-ropsten";
 
         } else if (startsWith(arg, "-f:") || startsWith(arg, "--fmt:")) {
             prettyPrint = true;
@@ -198,6 +202,7 @@ void COptions::Init(void) {
     pOptions = this;
 
     prettyPrint = false;
+    networkString = "api";
     rerun = false;
     incomeOnly = false;
     expenseOnly = false;

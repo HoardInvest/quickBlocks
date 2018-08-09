@@ -196,7 +196,7 @@ bool CSlurperApp::Slurp(COptions& options, string_q& message) {
         done = true;
 #endif
         while (!done) {
-            string_q url = string_q("https://api.etherscan.io/api?module=account&action=txlist&sort=asc") +
+            string_q url = string_q("https://") + options.networkString + ".etherscan.io/api?module=account&action=txlist&sort=asc" +
             "&address=" + theAccount.addr +
             "&page="    + uint_2_Str(page) +
             "&offset="  + uint_2_Str(options.pageSize) +
